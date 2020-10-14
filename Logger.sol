@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT                 // SPDX Licence Identifier
-pragma solidity >= 0.6.0 < 0.8.0;               // Version pragma
+pragma solidity >= 0.6.0;                       // Version pragma
 pragma experimental ABIEncoderV2;               // Experimental pragma
 
 /** @title Logger. -> Fonctions de types: internal. */

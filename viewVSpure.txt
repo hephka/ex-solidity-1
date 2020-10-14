@@ -1,0 +1,3 @@
+Les fonctions pures conservent les avantages de la vue sans transaction et sont idéales 
+pour les assistants internes et les utilitaires liés à des tâches telles que le calcul, 
+l'autorisation et la conversion de type.
