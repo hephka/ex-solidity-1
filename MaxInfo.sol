@@ -1,27 +1,16 @@
-// SPDX-License-Identifier: MIT                 // SPDX Licence Identifier
-pragma solidity >= 0.6.0;                       // Version pragma
-pragma experimental ABIEncoderV2;               // Experimental pragma
-
+// SPDX-License-Identifier: MIT                 r
+pragma solidity >=0.6.0 <0.8.0;
+pragma experimental ABIEncoderV2;
 
 contract MaxInfo {
-    struct Person {
-        address owner;
-        uint fees;
-    }
-    struct Block {
-        address miner;
-        uint difficulty;
-        uint gaslimit;
-        uint number;
-        
-    }
-      
-    function personPicker(msg.sender, msg.value) private {
-        personInfo[msg.sender] = Person(msg.value);
-    }
-    
-    function blockPicker(block.coinbase, block.difficulty, block.gaslimit, block.number) public {
-        blockInfo[block.coinbase] = Block(block.difficulty, block.gaslimit, block.number);
-    }
-    
+  struct Info {
+    address sender;
+    uint256 sender_balance;
+    uint256 block_number;
+    uint256 block_timestamp;
+  }
+
+  function getInfo() public view returns (Info memory) {
+    return Info(msg.sender, msg.sender.balance, block.number, block.timestamp);
+  }
 }

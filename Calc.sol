@@ -1,49 +1,53 @@
-// SPDX-License-Identifier: MIT                 // SPDX Licence Identifier
-pragma solidity >= 0.6.0;                       // Version pragma
-pragma experimental ABIEncoderV2;               // Experimental pragma
+// SPDX-License-Identifier: MIT                 r
+pragma solidity >=0.6.0;
+pragma experimental ABIEncoderV2;
 
-/** @title Calculatrice.
-  * @author Franck Thevenin as Hephka.
-  * @notice Vous pouvez additionner, soustraire, multiplier et diviser deux nombres <uint>.
-  * @dev Ces fonctions ne coûtent pas de ressources et retourne le résultat de l'opération demandé seulement pour l'utilisateur ayant déployé ce contrat.
-  */
+/// @title A blockchain calculator API
+/// @author Sofiane Akermoun <absolutevirtuexi@gmail.com>
+/// @notice This contract was written for the dwd studens from Alyra School
+/// @dev All function calls are currently implemented without side effects
 contract Calc {
-    address private owner;                      // Déclaration de owner <adress>
+  address private owner;
 
-    constructor() public {
-        owner = msg.sender;
-    }
+  constructor() public {
+    owner = msg.sender;
+  }
 
-    /** @dev Fonction permettant l'addition de 2 nombres. 
-      * @param nb1 Premier nombre. <uint>.
-      * @param nb2 Second nombre. <uint>.
-      */
-    function add(uint nb1, uint nb2) public view returns (uint res) {
-        require(owner == msg.sender, 'Only owner can use this function.');
-        res = nb1 + nb2;
-    }
-    /** @dev Fonction permettant l'addition de 2 nombres. 
-      * @param nb1 Premier nombre. <uint>.
-      * @param nb2 Second nombre. <uint>.
-      */
-    function sub(uint nb1, uint nb2) public view returns (uint res) {
-        require(owner == msg.sender, 'Only owner can use this function.');
-        res = nb1 - nb2;
-    }
-    /** @dev Fonction permettant l'addition de 2 nombres. 
-      * @param nb1 Premier nombre. <uint>.
-      * @param nb2 Second nombre. <uint>.
-      */
-    function mul(uint nb1, uint nb2) public view returns (uint res) {
-        require(owner == msg.sender, 'Only owner can use this function.');
-        res = nb1 * nb2;
-    }
-    /** @dev Fonction permettant l'addition de 2 nombres. 
-      * @param nb1 Premier nombre. <uint>.
-      * @param nb2 Second nombre. <uint>.
-      */
-    function div(uint nb1, uint nb2) public view returns (uint res) {
-        require(owner == msg.sender, 'Only owner can use this function.');
-        res = nb1 / nb2;
-    }
+  modifier onlyOwner() {
+    require(owner == msg.sender, 'Only owner can use this function');
+    _;
+  }
+
+  /// @notice An addition function
+  /// @param a First number of the add operation
+  /// @param b Second number of the add operation
+  /// @return the result of the addition a + b
+  function add(uint256 a, uint256 b) public view onlyOwner returns (uint256) {
+    return a + b;
+  }
+
+  /// @notice A substraction function
+  /// @param a First number of the sub operation
+  /// @param b Second number of the sub operation
+  /// @return the result of the substraction a - b
+  function sub(uint256 a, uint256 b) public view onlyOwner returns (uint256) {
+    return a - b;
+  }
+
+  /// @notice A multiplication function
+  /// @param a First number of the sub operation
+  /// @param b Second number of the sub operation
+  /// @return the result of the multiplication a * b
+  function mul(uint256 a, uint256 b) public view onlyOwner returns (uint256) {
+    return a * b;
+  }
+
+  /// @notice A division function
+  /// @dev need to check for 0 division
+  /// @param a The numerator
+  /// @param b The denominator
+  /// @return the result of the division a / b
+  function div(uint256 a, uint256 b) public view onlyOwner returns (uint256) {
+    return a / b;
+  }
 }
